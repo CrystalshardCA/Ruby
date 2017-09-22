@@ -9,8 +9,8 @@
         <module name="Ruby" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Ruby" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="Ruby" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

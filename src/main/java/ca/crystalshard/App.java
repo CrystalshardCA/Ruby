@@ -8,6 +8,8 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import static spark.Spark.get;
+
 /**
  * Hello world!
  *
@@ -25,13 +27,17 @@ public class App
             cmd = parser.parse(options, args);
         } catch (ParseException e) {
             System.out.println(e.getMessage());
-            formatter.printHelp("utility-name", options);
+            formatter.printHelp("ruby", options);
 
             System.exit(1);
             return;
         }
 
+        get("/hello", (req, res) -> "Hello World");
+
         System.out.println( "Hello World!" );
+
+
     }
 }
 
