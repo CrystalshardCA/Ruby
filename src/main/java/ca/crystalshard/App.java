@@ -1,6 +1,7 @@
 package ca.crystalshard;
 
 import ca.crystalshard.adapter.console.ConsoleArgumentOptions;
+import ca.crystalshard.adapter.web.HomeController;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -33,7 +34,8 @@ public class App
             return;
         }
 
-        get("/hello", (req, res) -> "Hello World");
+        HomeController home = new HomeController();
+        home.register();
 
         System.out.println( "Hello World!" );
 
