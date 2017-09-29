@@ -1,45 +1,26 @@
 package ca.crystalshard;
 
-import ca.crystalshard.adapter.console.ConsoleArgumentOptions;
-import ca.crystalshard.adapter.web.HomeController;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
+import ca.crystalshard.boot.guice.module.ConfigModule;
+import ca.crystalshard.boot.guice.module.AppModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import org.apache.log4j.Logger;
 
-import static spark.Spark.get;
-
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
+
+    private static Logger log = Logger.getLogger(App.class);
+
     public static void main( String[] args )
     {
-        Options options = new ConsoleArgumentOptions().getOptions();
-        CommandLineParser parser = new DefaultParser();
-        HelpFormatter formatter = new HelpFormatter();
-        CommandLine cmd;
-
         try {
-            cmd = parser.parse(options, args);
-        } catch (ParseException e) {
-            System.out.println(e.getMessage());
-            formatter.printHelp("ruby", options);
-
-            System.exit(1);
-            return;
+            Injector injector = Guice.createInjector(new AppModule(), new ConfigModule());
+            ModuleBooter booter = injector.getInstance(ModuleBooter.class);
+            booter.init();
+        } catch (Exception e) {
+            log.error("Failed to start application", e);
+            throw e;
         }
-
-        HomeController home = new HomeController();
-        home.register();
-
-        System.out.println( "Hello World!" );
-
-
     }
 }
 

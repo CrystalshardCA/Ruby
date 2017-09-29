@@ -1,14 +1,13 @@
 package ca.crystalshard.adapter.web;
 
-import static spark.Spark.path;
-import static spark.Spark.get;
+import spark.Route;
 
-public class HomeController {
+public class HomeController extends RubyController {
 
     public void register() {
 
         path("/", () -> {
-            get("/", (request, response) -> {
+            get("/", (Route) (request, response) -> {
                  return "Hello World!";
             });
         });
