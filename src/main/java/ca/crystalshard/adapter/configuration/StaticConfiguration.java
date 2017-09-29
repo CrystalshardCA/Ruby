@@ -8,4 +8,14 @@ public class StaticConfiguration implements RubyWebConfiguration {
     public int getPort() {
         return 8080;
     }
+
+    @Override
+    public String getStaticFileLocation() {
+        return "/public";
+    }
+
+    @Override
+    public String getViewFolder() {
+        return "/views";
+    }
 }

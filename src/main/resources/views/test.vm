@@ -1,0 +1,5 @@
+#include("./views/header.vm")
+
+<p> Hello $firstName $lastName </p>
+
+#include("./views/footer.vm")

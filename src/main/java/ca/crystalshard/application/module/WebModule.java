@@ -5,6 +5,7 @@ import ca.crystalshard.domain.configuration.RubyWebConfiguration;
 import com.google.inject.Inject;
 
 import static spark.Spark.port;
+import static spark.Spark.staticFileLocation;
 
 public class WebModule implements RubyModule {
 
@@ -21,6 +22,7 @@ public class WebModule implements RubyModule {
     @Override
     public void register() {
         port(webConfiguration.getPort());
+        staticFileLocation(webConfiguration.getStaticFileLocation());
         homeController.register();
     }
 }

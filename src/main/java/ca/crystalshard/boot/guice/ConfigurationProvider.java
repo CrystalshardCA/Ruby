@@ -17,3 +17,4 @@ public class ConfigurationProvider implements Provider<RubyWebConfiguration> {
         return new StaticConfiguration();
     }
 }
+
