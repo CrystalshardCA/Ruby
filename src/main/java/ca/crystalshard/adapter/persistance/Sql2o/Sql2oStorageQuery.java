@@ -1,9 +1,11 @@
 package ca.crystalshard.adapter.persistance.Sql2o;
 
-import ca.crystalshard.adapter.persistance.StorageConnection;
 import ca.crystalshard.adapter.persistance.StorageQuery;
 import org.sql2o.Connection;
 import org.sql2o.Query;
+
+import java.util.List;
+import java.util.function.Function;
 
 public class Sql2oStorageQuery implements StorageQuery {
 
@@ -22,8 +24,33 @@ public class Sql2oStorageQuery implements StorageQuery {
         return this;
     }
 
+
+
     @Override
-    public StorageConnection executeUpdate() {
-        return new Sql2oStorageConnection(connection);
+    public int executeUpdate() {
+
+        return executeUpdate(Connection::getResult);
+    }
+
+    @Override
+    public <T> T executeAndFetchFirst(Class<T> returnType) {
+        return query.executeAndFetchFirst(returnType);
+    }
+
+    @Override
+    public <T> List<T> executeAndFetch(Class<T> returnType) {
+        return query.executeAndFetch(returnType);
+    }
+
+    @Override
+    public <T> T executeUpdateWithKey(Class<T> keyClass) {
+
+        return executeUpdate((connection1) -> connection1.getKey(keyClass));
+    }
+
+    private <T> T executeUpdate(Function<Connection, T> returnValueFn) {
+        Connection conn = query.executeUpdate();
+
+        return returnValueFn.apply(conn);
     }
 }

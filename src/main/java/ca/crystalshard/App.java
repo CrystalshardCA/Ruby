@@ -2,6 +2,7 @@ package ca.crystalshard;
 
 import ca.crystalshard.boot.guice.module.ConfigModule;
 import ca.crystalshard.boot.guice.module.AppModule;
+import ca.crystalshard.boot.guice.module.DatabaseModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import org.apache.log4j.Logger;
@@ -14,7 +15,7 @@ public class App
     public static void main( String[] args )
     {
         try {
-            Injector injector = Guice.createInjector(new AppModule(), new ConfigModule());
+            Injector injector = Guice.createInjector(new AppModule(), new ConfigModule(), new DatabaseModule());
             ModuleBooter booter = injector.getInstance(ModuleBooter.class);
             booter.init();
         } catch (Exception e) {
