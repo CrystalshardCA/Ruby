@@ -7,3 +7,4 @@ public interface RubyWebConfiguration {
 
     String getViewFolder();
 }
+
