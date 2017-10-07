@@ -6,4 +6,6 @@ public interface RubyDataConfiguration {
     String getPassword();
 
     String getServerName();
+
+    String getMigrationLocation();
 }

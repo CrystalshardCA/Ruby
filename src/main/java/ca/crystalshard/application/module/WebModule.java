@@ -1,5 +1,6 @@
 package ca.crystalshard.application.module;
 
+import ca.crystalshard.adapter.persistance.Migration;
 import ca.crystalshard.adapter.web.HomeController;
 import ca.crystalshard.domain.configuration.RubyWebConfiguration;
 import com.google.inject.Inject;
@@ -26,3 +27,4 @@ public class WebModule implements RubyModule {
         homeController.register();
     }
 }
+
