@@ -9,4 +9,3 @@ jdk:
 
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS `Ruby`;'
-  - cd java
