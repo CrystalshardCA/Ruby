@@ -1,3 +1,6 @@
 a.primary-brand-color {
     color: #c92800
 }
+body {
+    padding-top: 65px;
+}

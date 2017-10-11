@@ -1,0 +1,12 @@
+language: java
+
+services:
+  - mysql
+
+jdk:
+  - oraclejdk8
+  - openjdk7
+
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS `Ruby`;'
+  - cd java

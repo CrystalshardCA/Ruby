@@ -10,10 +10,6 @@ import static org.junit.Assert.assertTrue;
 public class AppTest
 {
 
-
-    /**
-     * Rigourous Test :-)
-     */
     @Test
     public void testApp()
     {
