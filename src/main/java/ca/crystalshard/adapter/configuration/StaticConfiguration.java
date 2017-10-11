@@ -39,4 +39,9 @@ public class StaticConfiguration implements RubyWebConfiguration, RubyDataConfig
     public String getServerName() {
         return "localhost";
     }
+
+    @Override
+    public String getMigrationLocation() {
+        return "/db/migration";
+    }
 }
