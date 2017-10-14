@@ -10,8 +10,7 @@ import com.google.inject.Inject;
 
 import java.util.Optional;
 
-public class MsSqlJobRepository implements JobRepository {
-
+public class MySqlJobRepository implements JobRepository {
 
     private Storage storage;
 
@@ -21,36 +20,36 @@ public class MsSqlJobRepository implements JobRepository {
     private final String updateQuery;
 
     @Inject
-    public MsSqlJobRepository(Storage storage) {
+    public MySqlJobRepository(Storage storage) {
         this.storage = storage;
 
         this.retrieveQuery = String.format("" +
-            " SELECT id, name, createdDateUtc, updatedDateUtc, deletedDateUtc " +
-            " FROM dbo.%s j " +
-            " WHERE j.id = :id " +
-            " AND j.deletedDateUtc IS NULL",
-            SqlTableNames.JOB
+                        " SELECT id, name, createdDateUtc, updatedDateUtc, deletedDateUtc " +
+                        " FROM %s j " +
+                        " WHERE j.id = :id " +
+                        " AND j.deletedDateUtc IS NULL",
+                SqlTableNames.JOB
         );
 
         this.deleteQuery = String.format("" +
-            " UPDATE dbo.%s " +
-            " SET deletedDateUtc = GETUTCDATE() " +
-            " WHERE id = :id ",
-            SqlTableNames.JOB
+                        " UPDATE %s " +
+                        " SET deletedDateUtc = UTC_DATE() " +
+                        " WHERE id = :id ",
+                SqlTableNames.JOB
         );
 
         this.saveQuery = String.format("" +
-            " INSERT INTO dbo.%s " +
-            " (name) " +
-            " VALUES (:name) ",
-            SqlTableNames.JOB
+                        " INSERT INTO %s " +
+                        " (name, createdDateUtc, updatedDateUtc) " +
+                        " VALUES (:name, UTC_DATE(), UTC_DATE()) ",
+                SqlTableNames.JOB
         );
 
         this.updateQuery = String.format("" +
-            " UPDATE dbo.%s " +
-            " SET name = :name, updatedDateUtc = GETUTCDATE() " +
-            " WHERE id = :id ",
-            SqlTableNames.JOB
+                        " UPDATE %s " +
+                        " SET name = :name, updatedDateUtc = UTC_DATE() " +
+                        " WHERE id = :id ",
+                SqlTableNames.JOB
         );
     }
 
