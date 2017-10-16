@@ -1,13 +1,14 @@
 package ca.crystalshard.adapter.persistance.repositories;
 
-import ca.crystalshard.adapter.persistance.SqlTableNames;
 import ca.crystalshard.adapter.persistance.Storage;
 import ca.crystalshard.adapter.persistance.StorageConnection;
 import ca.crystalshard.domain.Job;
 import ca.crystalshard.domain.identifier.JobId;
 import ca.crystalshard.domain.persistance.repositories.JobRepository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class JobRepositoryBase implements JobRepository {
     String retrieveQuery;
@@ -23,7 +24,8 @@ public class JobRepositoryBase implements JobRepository {
 
     public Optional<Job> getJob(JobId jobId) {
         try (StorageConnection con = storage.open()) {
-            JobDto jobDto = con.createQuery(retrieveQuery)
+
+            JobDto jobDto = con.createQuery(String.format("%s%s", retrieveQuery, " AND j.id = :id"))
                     .addParameter("id", jobId.getId())
                     .executeAndFetchFirst(JobDto.class);
 
@@ -69,6 +71,16 @@ public class JobRepositoryBase implements JobRepository {
             con.createQuery(deleteQuery)
                     .addParameter("id", jobId.getId())
                     .executeUpdate();
+        }
+    }
+
+    public List<Job> getAllJobs() {
+        try (StorageConnection con = storage.open()) {
+            return con.createQuery(retrieveQuery)
+                    .executeAndFetch(JobDto.class)
+                    .stream().map(this::toJob).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to retrieve jobs", e);
         }
     }
 

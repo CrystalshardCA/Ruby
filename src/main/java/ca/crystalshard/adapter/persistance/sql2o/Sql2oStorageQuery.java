@@ -27,9 +27,9 @@ public class Sql2oStorageQuery implements StorageQuery {
 
 
     @Override
-    public void executeUpdate() {
+    public int executeUpdate() {
 
-        executeUpdate(Connection::getResult);
+        return executeUpdate(Connection::getResult);
     }
 
     @Override

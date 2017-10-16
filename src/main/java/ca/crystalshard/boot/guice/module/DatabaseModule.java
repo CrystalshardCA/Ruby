@@ -2,7 +2,6 @@ package ca.crystalshard.boot.guice.module;
 
 import ca.crystalshard.adapter.persistance.Migration;
 import ca.crystalshard.adapter.persistance.Storage;
-import ca.crystalshard.adapter.persistance.repositories.MsSqlJobRepository;
 import ca.crystalshard.adapter.persistance.repositories.MySqlJobRepository;
 import ca.crystalshard.boot.guice.DataSourceProvider;
 import ca.crystalshard.boot.guice.MigrationProvider;

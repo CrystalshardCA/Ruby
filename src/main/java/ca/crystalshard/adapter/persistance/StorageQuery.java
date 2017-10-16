@@ -5,7 +5,7 @@ import java.util.List;
 public interface StorageQuery {
     StorageQuery addParameter(String name, Object value);
 
-    void executeUpdate();
+    int executeUpdate();
 
     <T> T executeAndFetchFirst(Class<T> returnType);
 

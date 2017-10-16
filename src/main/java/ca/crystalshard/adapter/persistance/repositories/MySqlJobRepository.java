@@ -26,8 +26,8 @@ public class MySqlJobRepository extends JobRepositoryBase {
         this.retrieveQuery = String.format("" +
                         " SELECT id, name, createdDateUtc, updatedDateUtc, deletedDateUtc " +
                         " FROM %s j " +
-                        " WHERE j.id = :id " +
-                        " AND j.deletedDateUtc IS NULL",
+                        " WHERE j.deletedDateUtc IS NULL " +
+                        " AND ",
                 SqlTableNames.JOB
         );
         this.deleteQuery = String.format("" +
