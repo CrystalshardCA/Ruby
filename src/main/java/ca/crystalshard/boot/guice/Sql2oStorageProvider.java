@@ -1,8 +1,6 @@
 package ca.crystalshard.boot.guice;
 
-import ca.crystalshard.adapter.persistance.Sql2o.Sql2oStorage;
-import ca.crystalshard.adapter.persistance.flyway.FlywayMigration;
-import ca.crystalshard.domain.configuration.RubyDataConfiguration;
+import ca.crystalshard.adapter.persistance.sql2o.Sql2oStorage;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 

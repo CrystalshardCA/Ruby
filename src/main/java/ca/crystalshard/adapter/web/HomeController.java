@@ -31,7 +31,7 @@ public class HomeController extends RubyTemplateController {
                 model.put("firstName", "First");
                 model.put("lastName", "Last");
 
-                return new ModelAndView(model, "test.vm");
+                return new ModelAndView(model, "home/index.vm");
             });
         });
 

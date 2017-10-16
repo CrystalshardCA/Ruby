@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Optional;
 
 @SuppressWarnings("ConstantConditions")
@@ -28,7 +29,7 @@ public abstract class JobRepositoryTest extends AbstractRepositoryTest {
     @Ignore
     @Test
     public void save_shouldSaveJob_whenDoesNotExist() {
-        Job job = new Job("JobGetHandler");
+        Job job = new Job("JobApiGetHandler");
 
         JobId newJob = jobRepository.saveJob(job);
 
@@ -61,6 +62,21 @@ public abstract class JobRepositoryTest extends AbstractRepositoryTest {
 
         Optional<Job> actual = jobRepository.getJob(toUpdate);
         Assert.assertEquals(newJob.getName(), actual.get().getName());
+    }
+
+    @Ignore
+    @Test
+    public void getAll_shouldGetAllJobs() {
+        String jobName = "GetAllTest";
+        Job job = new Job(jobName);
+        jobRepository.saveJob(job);
+        String jobName2 = "GetAllTest2";
+        Job job2 = new Job(jobName2);
+        jobRepository.saveJob(job2);
+
+        List<Job> results = jobRepository.getAllJobs();
+        Assert.assertTrue(results.stream().anyMatch(e -> e.getName().equals(jobName)));
+        Assert.assertTrue(results.stream().anyMatch(e -> e.getName().equals(jobName2)));
     }
 }
 

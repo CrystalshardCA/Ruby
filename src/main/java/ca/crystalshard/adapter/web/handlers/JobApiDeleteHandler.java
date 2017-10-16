@@ -1,5 +1,6 @@
 package ca.crystalshard.adapter.web.handlers;
 
+import ca.crystalshard.adapter.web.viewModels.ViewEnvelope;
 import ca.crystalshard.domain.identifier.JobId;
 import ca.crystalshard.domain.persistance.repositories.JobRepository;
 import com.google.inject.Inject;
@@ -7,12 +8,12 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class JobDeleteHandler implements Route {
+public class JobApiDeleteHandler implements Route {
 
     private JobRepository jobRepository;
 
     @Inject
-    public JobDeleteHandler(JobRepository jobRepository) {
+    public JobApiDeleteHandler(JobRepository jobRepository) {
         this.jobRepository = jobRepository;
     }
 
@@ -22,6 +23,6 @@ public class JobDeleteHandler implements Route {
 
         jobRepository.deleteJob(jobId);
 
-        return jobId.getId();
+        return ViewEnvelope.of(jobId.getId());
     }
 }

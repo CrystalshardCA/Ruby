@@ -1,0 +1,30 @@
+#parse("./views/header.vm")
+#set ($navPage = "job")
+#parse("./views/navigation.vm")
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="jobIndex">
+            Loading...
+            </div>
+        </div>
+    </div>
+</div>
+<script id="job-template" type="text/x-handlebars-template">
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Created</th>
+        </tr>
+        {{#each results}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{createdDateUtc}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</script>
+#set ($scripts = ["/js/namespace.js", "/js/crystalshard/ruby/ui/components/JobIndexForm.js", "/js/apps/jobs/index.js"])
+#parse("./views/footer.vm")

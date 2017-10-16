@@ -8,11 +8,14 @@ import ca.crystalshard.domain.identifier.JobId;
 import ca.crystalshard.domain.persistance.repositories.JobRepository;
 import com.google.inject.Inject;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class MsSqlJobRepository implements JobRepository {
 
 
+    private final String retrieveAllQuery;
     private Storage storage;
 
     private final String retrieveQuery;
@@ -31,6 +34,11 @@ public class MsSqlJobRepository implements JobRepository {
             " AND j.deletedDateUtc IS NULL",
             SqlTableNames.JOB
         );
+
+        this.retrieveAllQuery = String.format("" +
+                " SELECT id, name, createdDateUtc, updatedDateUtc, deletedDateUtc " +
+                " FROM %s j ",
+                SqlTableNames.JOB);
 
         this.deleteQuery = String.format("" +
             " UPDATE %s " +
@@ -72,6 +80,18 @@ public class MsSqlJobRepository implements JobRepository {
     }
 
     @Override
+    public List<Job> getAllJobs() {
+        try (StorageConnection con = storage.open()) {
+            return con.createQuery(retrieveAllQuery)
+                        .executeAndFetch(JobDto.class)
+                        .stream().map(this::toJob).collect(Collectors.toList());
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Failed to retrieve jobs", e);
+        }
+    }
+
+    @Override
     public JobId saveJob(Job job) {
         try (StorageConnection con = storage.open()) {
             Integer jobId = con.createQuery(saveQuery, true)
@@ -80,7 +100,7 @@ public class MsSqlJobRepository implements JobRepository {
 
             return JobId.of(jobId);
         }
-        catch(Exception e) {
+        catch (Exception e) {
             String exceptionMessage = String.format("Unable to save job: %s", job.getName());
             throw new UnableToSaveException(exceptionMessage, e);
         }
@@ -108,6 +128,8 @@ public class MsSqlJobRepository implements JobRepository {
                     .executeUpdate();
         }
     }
+
+
 
     private Job toJob(JobDto jobDto) {
         return new Job(JobId.of(jobDto.id), jobDto.name, jobDto.createdDateUtc, jobDto.updatedDateUtc, jobDto.deletedDateUtc);

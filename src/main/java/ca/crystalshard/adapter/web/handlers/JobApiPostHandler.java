@@ -1,6 +1,7 @@
 package ca.crystalshard.adapter.web.handlers;
 
 import ca.crystalshard.adapter.web.viewModels.JobPostView;
+import ca.crystalshard.adapter.web.viewModels.ViewEnvelope;
 import ca.crystalshard.adapter.web.viewModels.mappers.JobPostViewMapper;
 import ca.crystalshard.adapter.web.viewModels.mappers.JobViewMapper;
 import ca.crystalshard.domain.Job;
@@ -15,14 +16,14 @@ import spark.Route;
 
 import java.util.Optional;
 
-public class JobPostHandler implements Route {
+public class JobApiPostHandler implements Route {
 
     private JobRepository jobRepository;
     private JobPostViewMapper jobPostViewMapper;
     private JobViewMapper jobViewMapper;
 
     @Inject
-    public JobPostHandler(JobRepository jobRepository, JobPostViewMapper jobPostViewMapper, JobViewMapper jobViewMapper) {
+    public JobApiPostHandler(JobRepository jobRepository, JobPostViewMapper jobPostViewMapper, JobViewMapper jobViewMapper) {
         this.jobRepository = jobRepository;
         this.jobPostViewMapper = jobPostViewMapper;
         this.jobViewMapper = jobViewMapper;
@@ -39,7 +40,7 @@ public class JobPostHandler implements Route {
         JobId jobId = jobRepository.saveJob(newJob);
         Optional<Job> insertedJob = jobRepository.getJob(jobId);
         if (insertedJob.isPresent()) {
-            return jobViewMapper.toView(insertedJob.get());
+            return ViewEnvelope.of(jobViewMapper.toView(insertedJob.get()));
         }
         throw new ResourceNotFoundException(String.format("Inserted job was not found at id: %s", jobId.getId()));
     }

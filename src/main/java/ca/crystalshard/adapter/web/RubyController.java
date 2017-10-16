@@ -6,6 +6,9 @@ import spark.Spark;
 import spark.TemplateEngine;
 import spark.TemplateViewRoute;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class RubyController {
 
     void delete(String path, Route route) {
@@ -23,6 +26,9 @@ public abstract class RubyController {
     void path(String path, RouteGroup group)
     {
         Spark.path(path, group);
+    }
+    Map<String, Object> emptyModel() {
+        return new HashMap<>();
     }
 
     public abstract void register();

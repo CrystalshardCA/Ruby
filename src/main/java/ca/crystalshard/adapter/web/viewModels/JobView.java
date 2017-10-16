@@ -7,3 +7,4 @@ public class JobView {
     public String updatedDateUtc;
     public String deletedDateUtc;
 }
+
