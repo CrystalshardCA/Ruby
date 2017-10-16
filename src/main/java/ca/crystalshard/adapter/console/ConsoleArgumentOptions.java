@@ -13,6 +13,10 @@ public class ConsoleArgumentOptions {
         test.setRequired(false);
         options.addOption(test);
 
+        Option propertyOverride = new Option("p", "properties", true, "Location of override property file.");
+        propertyOverride.setRequired(false);
+        options.addOption(propertyOverride);
+
         return options;
 
     }

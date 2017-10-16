@@ -1,5 +1,7 @@
 package ca.crystalshard.domain.configuration;
 
+import ca.crystalshard.adapter.configuration.DatabaseTypeEnum;
+
 public interface RubyDataConfiguration {
     String getUrl();
 
@@ -10,4 +12,5 @@ public interface RubyDataConfiguration {
     String getServerName();
 
     String getMigrationLocation();
+    DatabaseTypeEnum getDatabaseType();
 }

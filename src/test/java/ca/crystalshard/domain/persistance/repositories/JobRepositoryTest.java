@@ -26,7 +26,6 @@ public abstract class JobRepositoryTest extends AbstractRepositoryTest {
 
     }
 
-    @Ignore
     @Test
     public void save_shouldSaveJob_whenDoesNotExist() {
         Job job = new Job("JobApiGetHandler");
@@ -37,7 +36,6 @@ public abstract class JobRepositoryTest extends AbstractRepositoryTest {
         Assert.assertEquals(job.getName(), actual.get().getName());
     }
 
-    @Ignore
     @Test
     public void delete_shouldDeleteJob() {
         Job job = new Job("Should Delete");
@@ -50,7 +48,6 @@ public abstract class JobRepositoryTest extends AbstractRepositoryTest {
         Assert.assertFalse(actual.isPresent());
     }
 
-    @Ignore
     @Test
     public void update_shouldUpdateJob() {
         Job job = new Job("OldName");
