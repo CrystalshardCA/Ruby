@@ -1,4 +1,4 @@
-package ca.crystalshard.adapter.web.viewModels;
+package ca.crystalshard.adapter.web.viewmodels;
 
 public class JobView {
     public int id;

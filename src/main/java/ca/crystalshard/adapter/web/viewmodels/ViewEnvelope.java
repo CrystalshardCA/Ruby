@@ -1,4 +1,4 @@
-package ca.crystalshard.adapter.web.viewModels;
+package ca.crystalshard.adapter.web.viewmodels;
 
 public class ViewEnvelope {
 
@@ -10,5 +10,5 @@ public class ViewEnvelope {
         return ve;
     }
 
-    public Object results;
+    private Object results;
 }

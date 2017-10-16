@@ -1,4 +1,4 @@
-package ca.crystalshard.adapter.persistance.Sql2o;
+package ca.crystalshard.adapter.persistance.sql2o;
 
 import ca.crystalshard.adapter.persistance.StorageQuery;
 import org.sql2o.Connection;
@@ -27,9 +27,9 @@ public class Sql2oStorageQuery implements StorageQuery {
 
 
     @Override
-    public int executeUpdate() {
+    public void executeUpdate() {
 
-        return executeUpdate(Connection::getResult);
+        executeUpdate(Connection::getResult);
     }
 
     @Override

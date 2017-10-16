@@ -7,5 +7,7 @@ public abstract class IntegerId extends Id<Integer> {
     }
 
     @Override
-    public int compareTo(Id<Integer> other) { return this.getId().compareTo(other.getId());}
+    public int compareTo(Id<Integer> other) {
+        return this.getId().compareTo(other.getId());
+    }
 }

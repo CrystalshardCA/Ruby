@@ -1,6 +1,6 @@
-package ca.crystalshard.adapter.web.viewModels.mappers;
+package ca.crystalshard.adapter.web.viewmodels.mappers;
 
-import ca.crystalshard.adapter.web.viewModels.JobPostView;
+import ca.crystalshard.adapter.web.viewmodels.JobPostView;
 import ca.crystalshard.domain.Job;
 
 public class JobPostViewMapper {

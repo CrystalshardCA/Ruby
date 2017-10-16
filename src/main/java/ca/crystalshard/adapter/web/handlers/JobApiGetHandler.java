@@ -1,7 +1,7 @@
 package ca.crystalshard.adapter.web.handlers;
 
-import ca.crystalshard.adapter.web.viewModels.ViewEnvelope;
-import ca.crystalshard.adapter.web.viewModels.mappers.JobViewMapper;
+import ca.crystalshard.adapter.web.viewmodels.ViewEnvelope;
+import ca.crystalshard.adapter.web.viewmodels.mappers.JobViewMapper;
 import ca.crystalshard.domain.Job;
 import ca.crystalshard.domain.identifier.JobId;
 import ca.crystalshard.domain.persistance.repositories.JobRepository;
@@ -28,8 +28,9 @@ public class JobApiGetHandler implements Route {
     public Object handle(Request request, Response response) throws Exception {
         JobId id = JobId.of(request.params("jobId"));
         Optional<Job> job = jobRepository.getJob(id);
-        if (job.isPresent())
+        if (job.isPresent()) {
             return ViewEnvelope.of(jobViewMapper.toView(job.get()));
+        }
 
         throw new ResourceNotFoundException(String.format("Job with id: %s was not found.", id));
     }

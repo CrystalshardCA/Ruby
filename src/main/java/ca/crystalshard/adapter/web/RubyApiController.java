@@ -15,12 +15,15 @@ abstract class RubyApiController extends RubyController {
     void delete(String path, Route route) {
         Spark.delete(path, route, transformer);
     }
+
     void put(String path, Route route) {
         Spark.put(path, route, transformer);
     }
+
     void post(String path, Route route) {
         Spark.post(path, route, transformer);
     }
+
     void get(String path, Route route) {
         Spark.get(path, route, transformer);
     }

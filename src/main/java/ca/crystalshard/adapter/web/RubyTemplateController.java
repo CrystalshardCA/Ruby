@@ -5,6 +5,7 @@ import spark.TemplateEngine;
 import spark.TemplateViewRoute;
 
 abstract class RubyTemplateController extends RubyController {
+
     private TemplateEngine templateEngine;
 
     RubyTemplateController(TemplateEngine templateEngine) {
@@ -14,12 +15,15 @@ abstract class RubyTemplateController extends RubyController {
     void delete(String path, TemplateViewRoute route) {
         Spark.delete(path, route, templateEngine);
     }
+
     void put(String path, TemplateViewRoute route) {
         Spark.put(path, route, templateEngine);
     }
+
     void post(String path, TemplateViewRoute route) {
         Spark.post(path, route, templateEngine);
     }
+
     void get(String path, TemplateViewRoute route) {
         Spark.get(path, route, templateEngine);
     }

@@ -1,7 +1,7 @@
 package ca.crystalshard.adapter.web.handlers;
 
-import ca.crystalshard.adapter.web.viewModels.ViewEnvelope;
-import ca.crystalshard.adapter.web.viewModels.mappers.JobViewMapper;
+import ca.crystalshard.adapter.web.viewmodels.ViewEnvelope;
+import ca.crystalshard.adapter.web.viewmodels.mappers.JobViewMapper;
 import ca.crystalshard.domain.Job;
 import ca.crystalshard.domain.persistance.repositories.JobRepository;
 import com.google.inject.Inject;

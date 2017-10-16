@@ -21,8 +21,9 @@ public class HomeController extends RubyTemplateController {
 
         Spark.before((req, res) -> {
             String path = req.pathInfo();
-            if (path.endsWith("/") && !path.equals("/"))
+            if (path.endsWith("/") && !path.equals("/")) {
                 res.redirect(path.substring(0, path.length() - 1));
+            }
         });
 
         path("/", () -> {
@@ -32,6 +33,11 @@ public class HomeController extends RubyTemplateController {
                 model.put("lastName", "Last");
 
                 return new ModelAndView(model, "home/index.vm");
+            });
+            get("/about", (TemplateViewRoute) (request, response) -> {
+                int i = 1;
+
+                return new ModelAndView(i, "home/index.vm");
             });
         });
 

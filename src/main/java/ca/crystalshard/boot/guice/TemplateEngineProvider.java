@@ -4,7 +4,6 @@ import ca.crystalshard.domain.configuration.RubyWebConfiguration;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import org.apache.velocity.app.VelocityEngine;
-import spark.ResponseTransformer;
 import spark.TemplateEngine;
 import spark.template.velocity.VelocityTemplateEngine;
 

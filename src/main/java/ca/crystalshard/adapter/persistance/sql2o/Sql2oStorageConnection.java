@@ -1,4 +1,4 @@
-package ca.crystalshard.adapter.persistance.Sql2o;
+package ca.crystalshard.adapter.persistance.sql2o;
 
 import ca.crystalshard.adapter.persistance.StorageConnection;
 import ca.crystalshard.adapter.persistance.StorageQuery;
