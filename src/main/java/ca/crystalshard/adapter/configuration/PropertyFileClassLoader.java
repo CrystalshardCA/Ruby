@@ -3,7 +3,6 @@ package ca.crystalshard.adapter.configuration;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
@@ -21,7 +20,7 @@ public class PropertyFileClassLoader implements PropertyFile {
     }
 
     private void overrideProperties(Properties overrideFile) {
-        for(Map.Entry<Object,Object> entrySet : overrideFile.entrySet()) {
+        for (Map.Entry<Object, Object> entrySet : overrideFile.entrySet()) {
             properties.setProperty((String) entrySet.getKey(), (String) entrySet.getValue());
         }
     }

@@ -1,7 +1,5 @@
 package ca.crystalshard.boot.guice;
 
-import ca.crystalshard.adapter.configuration.FileInputStreamPropertyFile;
-import ca.crystalshard.adapter.configuration.PropertyFile;
 import ca.crystalshard.adapter.persistance.Migration;
 import ca.crystalshard.adapter.persistance.flyway.FlywayMigration;
 import ca.crystalshard.domain.configuration.RubyDataConfiguration;

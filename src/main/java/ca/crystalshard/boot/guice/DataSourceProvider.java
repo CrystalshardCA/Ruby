@@ -21,7 +21,7 @@ public class DataSourceProvider implements Provider<DataSource> {
     @Override
     public DataSource get() {
 
-        switch(configuration.getDatabaseType()) {
+        switch (configuration.getDatabaseType()) {
             case MsSql:
                 return getSqlServerDataSource();
             case MySql:

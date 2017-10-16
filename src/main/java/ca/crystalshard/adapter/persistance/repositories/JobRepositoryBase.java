@@ -46,8 +46,7 @@ public class JobRepositoryBase implements JobRepository {
                     .executeUpdateWithKey(Integer.class);
 
             return JobId.of(jobId);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             String exceptionMessage = String.format("Unable to save job: %s", job.getName());
             throw new UnableToSaveException(exceptionMessage, e);
         }
