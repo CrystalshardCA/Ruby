@@ -1,8 +1,8 @@
 $(document).ready(function () {
     var $ = jQuery
-        JobIndexForm = crystalshard.ruby.ui.components.JobIndexForm;
+        JobController = crystalshard.ruby.ui.components.JobController;
 
     var $form = $("#jobIndex");
-    var jobIndexForm = new JobIndexForm($form);
-    jobIndexForm.init();
+    var jobController = new JobController($form);
+    jobController.init();
 });
