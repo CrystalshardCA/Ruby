@@ -33,14 +33,10 @@
             <property name="severity" value="error"/>
         </module>
         <module name="OuterTypeFilename"/>
-        <!--<module name="ImportControl">
-            <property name="severity" value="warning"/>
-            <property name="file" value="import-control.xml"/>
-        </module>
         <module name="ImportControl">
             <property name="severity" value="error"/>
-            <property name="file" value="import-control-error.xml"/>
-        </module>-->
+            <property name="file" value="import-control.xml"/>
+        </module>
         <module name="IllegalTokenText">
             <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
             <property name="format"

@@ -1,9 +1,9 @@
 package ca.crystalshard;
 
-import ca.crystalshard.adapter.configuration.OverridePropertyFileLocation;
-import ca.crystalshard.boot.guice.module.AppModule;
-import ca.crystalshard.boot.guice.module.ConfigModule;
-import ca.crystalshard.boot.guice.module.DatabaseModule;
+import ca.crystalshard.ruby.boot.guice.module.AppModule;
+import ca.crystalshard.ruby.boot.guice.module.ConfigModule;
+import ca.crystalshard.ruby.boot.guice.module.DatabaseModule;
+import ca.crystalshard.ruby.common.adapter.configuration.OverridePropertyFileLocation;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
