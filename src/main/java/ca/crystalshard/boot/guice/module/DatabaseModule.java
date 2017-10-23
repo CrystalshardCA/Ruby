@@ -2,7 +2,7 @@ package ca.crystalshard.boot.guice.module;
 
 import ca.crystalshard.adapter.persistance.Migration;
 import ca.crystalshard.adapter.persistance.Storage;
-import ca.crystalshard.adapter.persistance.repositories.MySqlJobRepository;
+import ca.crystalshard.adapter.persistance.repositories.MsSqlJobRepository;
 import ca.crystalshard.boot.guice.DataSourceProvider;
 import ca.crystalshard.boot.guice.MigrationProvider;
 import ca.crystalshard.boot.guice.StorageProvider;
@@ -21,6 +21,6 @@ public class DatabaseModule extends AbstractModule {
         bind(Migration.class).toProvider(MigrationProvider.class).in(Singleton.class);
         bind(Storage.class).toProvider(StorageProvider.class).in(Singleton.class);
 
-        bind(JobRepository.class).to(MySqlJobRepository.class).in(Singleton.class);
+        bind(JobRepository.class).to(MsSqlJobRepository.class).in(Singleton.class);
     }
 }

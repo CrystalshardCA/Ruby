@@ -1,6 +1,6 @@
 package ca.crystalshard.domain.configuration;
 
-import ca.crystalshard.adapter.configuration.DatabaseTypeEnum;
+import ca.crystalshard.domain.DatabaseTypeEnum;
 
 public interface RubyDataConfiguration {
     String getUrl();

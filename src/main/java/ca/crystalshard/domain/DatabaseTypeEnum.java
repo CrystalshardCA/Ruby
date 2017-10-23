@@ -1,4 +1,4 @@
-package ca.crystalshard.adapter.configuration;
+package ca.crystalshard.domain;
 
 public enum DatabaseTypeEnum {
 

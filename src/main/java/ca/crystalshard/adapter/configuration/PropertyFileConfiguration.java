@@ -1,5 +1,6 @@
 package ca.crystalshard.adapter.configuration;
 
+import ca.crystalshard.domain.DatabaseTypeEnum;
 import ca.crystalshard.domain.configuration.RubyDataConfiguration;
 import ca.crystalshard.domain.configuration.RubyWebConfiguration;
 import com.google.inject.Inject;

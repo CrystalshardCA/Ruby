@@ -9,6 +9,7 @@ import com.google.inject.Injector;
 
 public class TestInjectorProvider {
     public static Injector getInjector() {
-        return Guice.createInjector(new AppModule(), new ConfigModule(new OverridePropertyFileLocation(null)), new DatabaseModule(), new TestModule());
+        String overridePath = System.getenv("RUBY_TEST_PATH");
+        return Guice.createInjector(new AppModule(), new ConfigModule(new OverridePropertyFileLocation(overridePath)), new DatabaseModule(), new TestModule());
     }
 }
