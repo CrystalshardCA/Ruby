@@ -1,4 +1,5 @@
 # Crystalshard Ruby
+[![Build Status](https://travis-ci.org/CrystalshardCA/Ruby.svg?branch=master)](https://travis-ci.org/CrystalshardCA/Ruby)
 
 ## About
 Ruby is a pet project to create a modern automation server.
