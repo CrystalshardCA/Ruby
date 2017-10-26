@@ -53,7 +53,7 @@ public class BuildStepRepositoryBase implements BuildStepRepository {
 
             return BuildStepId.of(buildStepId);
         }
-        catch(Exception e) {
+        catch (Exception e) {
             String exceptionMessage = String.format("Unable to save build step: %s", buildStep.getName());
             throw new UnableToSaveException(exceptionMessage, e);
         }

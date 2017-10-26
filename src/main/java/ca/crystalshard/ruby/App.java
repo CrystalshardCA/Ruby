@@ -44,7 +44,7 @@ public class App {
             log.info("*                                                                       *");
             log.info("*************************************************************************");
         }
-        else if(config.getDatabaseType().equals(DatabaseTypeEnum.MySql)) {
+        else if (config.getDatabaseType().equals(DatabaseTypeEnum.MySql)) {
             childInjector = injector.createChildInjector(new MySqlDatabaseModule());
             log.info("*************************************************************************");
             log.info("*                                                                       *");
