@@ -8,5 +8,5 @@ CREATE TABLE IF NOT EXISTS `BuildStep` (
   `createdDateUtc` DATETIME NOT NULL,
   `updatedDateUtc` DATETIME NOT NULL,
   `deletedDateUtc` DATETIME NULL,
-  FOREIGN KEY (jobId) REFERENCES `job` (id)
+  FOREIGN KEY (jobId) REFERENCES `Job` (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
