@@ -5,9 +5,12 @@ import org.junit.AfterClass;
 
 public class AbstractRepositoryTest {
 
+    Injector injector;
     private static TestRepository testRepository;
 
+
     AbstractRepositoryTest(Injector injector) {
+        this.injector = injector;
         testRepository = injector.getInstance(TestRepository.class);
     }
 

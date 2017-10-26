@@ -1,7 +1,9 @@
 package ca.crystalshard.ruby.common.domain.persistance.repositories;
 
+import ca.crystalshard.TestInjectorProvider;
 import ca.crystalshard.ruby.common.domain.Job;
 import ca.crystalshard.ruby.common.domain.identifier.JobId;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,12 +14,12 @@ import java.util.List;
 import java.util.Optional;
 
 @SuppressWarnings("ConstantConditions")
-public abstract class JobRepositoryTest extends AbstractRepositoryTest {
+public class JobRepositoryTest extends AbstractRepositoryTest {
 
     private JobRepository jobRepository;
 
-    JobRepositoryTest(Injector injector) {
-        super(injector);
+    public JobRepositoryTest() {
+        super(TestInjectorProvider.getInjector());
         this.jobRepository = injector.getInstance(JobRepository.class);
     }
 
@@ -61,7 +63,6 @@ public abstract class JobRepositoryTest extends AbstractRepositoryTest {
         Assert.assertEquals(newJob.getName(), actual.get().getName());
     }
 
-    @Ignore
     @Test
     public void getAll_shouldGetAllJobs() {
         String jobName = "GetAllTest";
