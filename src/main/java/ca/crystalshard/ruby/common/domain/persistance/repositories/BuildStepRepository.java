@@ -7,7 +7,10 @@ import java.util.Optional;
 
 public interface BuildStepRepository {
     Optional<BuildStep> getBuildStep(BuildStepId buildStepId);
+
     BuildStepId saveBuildStep(BuildStep buildStep);
+
     void updateBuildStep(BuildStepId id, BuildStep buildStep);
+
     void deleteBuildStep(BuildStepId id);
 }
