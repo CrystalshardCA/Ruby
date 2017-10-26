@@ -1,7 +1,7 @@
 package ca.crystalshard.ruby.boot.guice.module;
 
-import ca.crystalshard.ruby.common.adapter.persistance.repositories.MySqlBuildStepRepository;
-import ca.crystalshard.ruby.common.adapter.persistance.repositories.MySqlJobRepository;
+import ca.crystalshard.ruby.common.adapter.persistance.repositories.mysql.MySqlBuildStepRepository;
+import ca.crystalshard.ruby.common.adapter.persistance.repositories.mysql.MySqlJobRepository;
 import ca.crystalshard.ruby.common.domain.persistance.repositories.BuildStepRepository;
 import ca.crystalshard.ruby.common.domain.persistance.repositories.JobRepository;
 import com.google.inject.Singleton;

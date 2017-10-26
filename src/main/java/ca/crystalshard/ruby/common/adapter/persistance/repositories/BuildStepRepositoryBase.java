@@ -8,13 +8,15 @@ import ca.crystalshard.ruby.common.domain.persistance.repositories.BuildStepRepo
 import ca.crystalshard.ruby.common.adapter.persistance.Storage;
 import ca.crystalshard.ruby.common.adapter.persistance.StorageConnection;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class BuildStepRepositoryBase implements BuildStepRepository {
-    String retrieveQuery;
-    String deleteQuery;
-    String insertQuery;
-    String updateQuery;
+    protected String retrieveQuery;
+    protected String deleteQuery;
+    protected String insertQuery;
+    protected String updateQuery;
 
     private Storage storage;
 
@@ -25,7 +27,7 @@ public class BuildStepRepositoryBase implements BuildStepRepository {
     @Override
     public Optional<BuildStep> getBuildStep(BuildStepId buildStepId) {
         try (StorageConnection con = storage.open()) {
-            BuildStepDto buildStepDto = con.createQuery(retrieveQuery)
+            BuildStepDto buildStepDto = con.createQuery(String.format("%s AND id = :id", retrieveQuery))
                     .addParameter("id", buildStepId.getId())
                     .executeAndFetchFirst(BuildStepDto.class);
 
@@ -84,6 +86,17 @@ public class BuildStepRepositoryBase implements BuildStepRepository {
         }
     }
 
+    @Override
+    public List<BuildStep> getAllBuildStepsForJob(JobId jobId) {
+        try (StorageConnection con = storage.open()) {
+            return con.createQuery(retrieveQuery)
+                    .executeAndFetch(BuildStepDto.class)
+                    .stream().map(this::toBuildStep).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to retrieve build steps", e);
+        }
+    }
+
     private BuildStep toBuildStep(BuildStepDto buildStepDto) {
         return new BuildStep(
                 BuildStepId.of(buildStepDto.id),
@@ -91,7 +104,7 @@ public class BuildStepRepositoryBase implements BuildStepRepository {
                 JobId.of(buildStepDto.jobId),
                 BuildType.of(buildStepDto.buildTypeId),
                 buildStepDto.orderValue,
-                buildStepDto.isDisabled == 1,
+                buildStepDto.isDisabled,
                 buildStepDto.createdDateUtc,
                 buildStepDto.updatedDateUtc,
                 buildStepDto.deletedDateUtc
@@ -104,7 +117,7 @@ public class BuildStepRepositoryBase implements BuildStepRepository {
         int jobId;
         int buildTypeId;
         int orderValue;
-        int isDisabled;
+        boolean isDisabled;
         String createdDateUtc;
         String updatedDateUtc;
         String deletedDateUtc;

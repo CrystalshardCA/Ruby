@@ -1,5 +1,6 @@
 package ca.crystalshard.ruby.common.domain.persistance.repositories;
 
+import ca.crystalshard.TestInjectorProvider;
 import com.google.inject.Injector;
 import org.junit.AfterClass;
 
@@ -9,8 +10,8 @@ public class AbstractRepositoryTest {
     private static TestRepository testRepository;
 
 
-    AbstractRepositoryTest(Injector injector) {
-        this.injector = injector;
+    AbstractRepositoryTest() {
+        this.injector = TestInjectorProvider.getInjector();
         testRepository = injector.getInstance(TestRepository.class);
     }
 

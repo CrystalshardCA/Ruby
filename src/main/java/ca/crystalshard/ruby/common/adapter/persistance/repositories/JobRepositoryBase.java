@@ -11,14 +11,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class JobRepositoryBase implements JobRepository {
-    String retrieveQuery;
-    String deleteQuery;
-    String saveQuery;
-    String updateQuery;
+    protected String retrieveQuery;
+    protected String deleteQuery;
+    protected String saveQuery;
+    protected String updateQuery;
 
     private Storage storage;
 
-    JobRepositoryBase(Storage storage) {
+    protected JobRepositoryBase(Storage storage) {
         this.storage = storage;
     }
 

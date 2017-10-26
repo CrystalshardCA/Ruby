@@ -1,6 +1,6 @@
 package ca.crystalshard.ruby.boot.guice.module;
 
-import ca.crystalshard.ruby.common.adapter.persistance.repositories.MsSqlJobRepository;
+import ca.crystalshard.ruby.common.adapter.persistance.repositories.mssql.MsSqlJobRepository;
 import ca.crystalshard.ruby.common.domain.persistance.repositories.JobRepository;
 import com.google.inject.Singleton;
 

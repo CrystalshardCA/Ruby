@@ -27,6 +27,14 @@ public class BuildStep {
         this.deletedDateUtc = deletedDateUtc;
     }
 
+    public BuildStep(String name, JobId jobId, BuildType buildType, int orderValue, boolean isDisabled) {
+        this.name = name;
+        this.jobId = jobId;
+        this.buildType = buildType;
+        this.orderValue = orderValue;
+        this.isDisabled = isDisabled;
+    }
+
     public BuildStepId getId() {
         return id;
     }

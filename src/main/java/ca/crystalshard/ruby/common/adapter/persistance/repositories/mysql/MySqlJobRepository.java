@@ -1,7 +1,8 @@
-package ca.crystalshard.ruby.common.adapter.persistance.repositories;
+package ca.crystalshard.ruby.common.adapter.persistance.repositories.mysql;
 
 import ca.crystalshard.ruby.common.adapter.persistance.SqlTableNames;
 import ca.crystalshard.ruby.common.adapter.persistance.Storage;
+import ca.crystalshard.ruby.common.adapter.persistance.repositories.JobRepositoryBase;
 import com.google.inject.Inject;
 
 

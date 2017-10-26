@@ -1,13 +1,9 @@
 package ca.crystalshard.ruby.common.domain.persistance.repositories;
 
-import ca.crystalshard.TestInjectorProvider;
 import ca.crystalshard.ruby.common.domain.Job;
 import ca.crystalshard.ruby.common.domain.identifier.JobId;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -18,14 +14,10 @@ public class JobRepositoryTest extends AbstractRepositoryTest {
 
     private JobRepository jobRepository;
 
-    public JobRepositoryTest() {
-        super(TestInjectorProvider.getInjector());
-        this.jobRepository = injector.getInstance(JobRepository.class);
-    }
 
     @Before
     public void setUp() {
-
+        jobRepository = injector.getInstance(JobRepository.class);
     }
 
     @Test
