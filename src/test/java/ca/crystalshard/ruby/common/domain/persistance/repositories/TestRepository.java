@@ -15,14 +15,17 @@ public class TestRepository {
     public TestRepository(Storage storage) {
         this.storage = storage;
 
-        this.cleanupJobsQuery = String.format("" +
-            "TRUNCATE TABLE %s",
-            SqlTableNames.JOB);
     }
 
     void cleanupDatabases() {
         try (StorageConnection con = storage.beginTransaction()) {
-            con.createQuery(cleanupJobsQuery, false)
+            con.createQuery("SET FOREIGN_KEY_CHECKS = 0", false)
+                    .executeUpdate();
+            con.createQuery(String.format("TRUNCATE TABLE %s", SqlTableNames.BUILD_STEP), false)
+                    .executeUpdate();
+            con.createQuery(String.format("TRUNCATE TABLE %s", SqlTableNames.JOB), false)
+                    .executeUpdate();
+            con.createQuery("SET FOREIGN_KEY_CHECKS = 1", false)
                     .executeUpdate();
 
             con.commit();

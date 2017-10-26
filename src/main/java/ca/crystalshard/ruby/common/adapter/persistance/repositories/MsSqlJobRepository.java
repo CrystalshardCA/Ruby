@@ -12,31 +12,31 @@ public class MsSqlJobRepository extends JobRepositoryBase  {
         super(storage);
 
         this.retrieveQuery = String.format("" +
-            " SELECT id, name, createdDateUtc, updatedDateUtc, deletedDateUtc " +
-            " FROM dbo.%s j " +
+                        " SELECT id, name, createdDateUtc, updatedDateUtc, deletedDateUtc " +
+                        " FROM dbo.%s j " +
                         " WHERE j.deletedDateUtc IS NULL ",
-            SqlTableNames.JOB
+                SqlTableNames.JOB
         );
 
         this.deleteQuery = String.format("" +
-            " UPDATE dbo.%s " +
-            " SET deletedDateUtc = GETUTCDATE() " +
-            " WHERE id = :id ",
-            SqlTableNames.JOB
+                        " UPDATE dbo.%s " +
+                        " SET deletedDateUtc = GETUTCDATE() " +
+                        " WHERE id = :id ",
+                SqlTableNames.JOB
         );
 
         this.saveQuery = String.format("" +
-            " INSERT INTO dbo.%s " +
-            " (name) " +
-            " VALUES (:name) ",
-            SqlTableNames.JOB
+                        " INSERT INTO dbo.%s " +
+                        " (name) " +
+                        " VALUES (:name) ",
+                SqlTableNames.JOB
         );
 
         this.updateQuery = String.format("" +
-            " UPDATE dbo.%s " +
-            " SET name = :name, updatedDateUtc = GETUTCDATE() " +
-            " WHERE id = :id ",
-            SqlTableNames.JOB
+                        " UPDATE dbo.%s " +
+                        " SET name = :name, updatedDateUtc = GETUTCDATE() " +
+                        " WHERE id = :id ",
+                SqlTableNames.JOB
         );
     }
 }
