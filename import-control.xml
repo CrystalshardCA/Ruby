@@ -16,10 +16,20 @@
         <disallow pkg="ca.crystalshard.ruby.web"/>
         <disallow pkg="ca.crystalsahrd.ruby.processor"/>
         <disallow pkg="ca.crystalshard.ruby.boot"/>
+        <subpackage name="domain">
+            <disallow pkg="ca.crystalshard.ruby.common.adapter"/>
+        </subpackage>
+        <subpackage name="adapter">
+        </subpackage>
     </subpackage>
     <subpackage name="web">
         <disallow pkg="ca.crystalshard.ruby.processor"/>
         <disallow pkg="ca.crystalshard.ruby.boot"/>
+        <subpackage name="domain">
+            <disallow pkg="ca.crystalshard.ruby.web.adapter"/>
+        </subpackage>
+        <subpackage name="adapter">
+        </subpackage>
     </subpackage>
     <subpackage name="processor">
         <disallow pkg="ca.crystalshard.ruby.web"/>
