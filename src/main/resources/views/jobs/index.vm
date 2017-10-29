@@ -78,5 +78,12 @@
         {{/each}}
     </table>
 </script>
-#set ($scripts = ["/js/namespace.js", "/js/crystalshard/ruby/ui/components/JobController.js", "/js/apps/jobs/index.js"])
+#set ($scripts = [
+    "/js/namespace.js",
+    "/js/crystalshard/ruby/ui/components/Path.js",
+    "/js/crystalshard/ruby/ui/components/Router.js",
+    "/js/crystalshard/ruby/ui/components/BaseController.js",
+    "/js/crystalshard/ruby/ui/components/JobController.js",
+    "/js/apps/jobs/index.js"
+])
 #parse("./views/footer.vm")

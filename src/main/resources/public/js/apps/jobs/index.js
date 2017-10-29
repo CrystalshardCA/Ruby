@@ -1,8 +1,11 @@
 $(document).ready(function () {
-    var $ = jQuery
+    var $ = jQuery,
+        BaseController = crystalshard.ruby.ui.components.BaseController,
         JobController = crystalshard.ruby.ui.components.JobController;
 
     var $form = $("#jobIndex");
-    var jobController = new JobController($form);
-    jobController.init();
+    var baseController = new BaseController($form);
+    var jobController = new JobController(baseController);
+
+    baseController.init();
 });
