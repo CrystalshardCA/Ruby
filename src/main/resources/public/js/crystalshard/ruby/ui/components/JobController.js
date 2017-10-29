@@ -2,78 +2,98 @@ namespace('crystalshard.ruby.ui.components');
 
 crystalshard.ruby.ui.components.JobController = (function() {
 
+    // TODO Remove Jquery call from controller
     var $ = jQuery,
         Hb = Handlebars;
 
-    var indexTemplate,
-        editTemplate,
-        parent;
-
-    function JobController(baseController) {
-        this.parent = baseController;
+    function JobController(router, browserContext) {
+        this.router = router;
+        this.browserContext = browserContext;
         this.indexTemplate = Hb.compile($("#job-template").html());
         this.editTemplate = Hb.compile($("#edit-job-template").html());
-        this.setupRoutes();
-        this.wireupEventHandlers();
+        this._setupRoutes();
+        this._wireupEventHandlers();
     }
     
-    JobController.prototype.setupRoutes = function() {
+    JobController.prototype._setupRoutes = function() {
         var self = this;
-        this.parent.getRouter().get("job\\/([0-9]+)", function (matches) {
-            self.initEditPage(matches[1]);
+        this.router.get("job\\/([0-9]+)", function (response, request) {
+            var id = request[1];
+            $.ajax({
+                method: "GET",
+                url: "/api/v1/job/" + id,
+                dataType: "json"
+            })
+            .done(function (data) {
+                if (typeof response === "function") {
+                    response(self.editTemplate(data.results));
+                }
+            });
         });
-        
-        this.parent.getRouter().get("job", function () {
-            self.initNewPage();
+
+        this.router.get("job", function (response) {
+            if (typeof response === "function") {
+                response(self.editTemplate({id:"", name:"", createdDateUtc:"", updatedDateUtc:""}));
+            }
         });
-        
-        this.parent.getRouter().get("", function () {
-            self.initIndexPage();            
+
+        this.router.get("", function (response) {
+            $.ajax({
+                method: "GET",
+                url: "/api/v1/job",
+                dataType: "json"
+            })
+            .done(function (data) {
+                if (typeof response === "function") {
+                    response(self.indexTemplate(data));
+                }
+            });
+
         });
     };
     
-    JobController.prototype.wireupEventHandlers = function() {
+    JobController.prototype._wireupEventHandlers = function() {
         var self = this;
         
-        self.parent.$page.on('click', 'button.row-edit', function(event) {
+        self.browserContext.onPage('click', 'button.row-edit', function(event) {
             event.preventDefault();
             var id = $(this).parent().parent().data("id");
-            self.parent.changePage("job/" + id);
+            self.browserContext.changePage("job/" + id);
         });
 
-        self.parent.$page.on('click', 'button.row-delete', function(event) {
+        self.browserContext.onPage('click', 'button.row-delete', function(event) {
             event.preventDefault();
             confirm("Clicking yes will delete this job. Press yes if you would like to proceed.");
             var id = $(this).parent().parent().data("id");
-            self.deleteJob(id);
+            self._deleteJob(id);
         });
 
-        self.parent.$page.on('click', 'button.home,a.home', function(event) {
+        self.browserContext.onPage('click', 'button.home,a.home', function(event) {
             event.preventDefault();
-            self.parent.changePage("");
+            self.browserContext.changePage("");
         });
 
-        self.parent.$page.on('click', 'button.new', function(event) {
+        self.browserContext.onPage('click', 'button.new', function(event) {
             event.preventDefault();
-            var name = self.parent.$page.find("#inputName").val();
-            self.newJob(name);
+            var name = self.browserContext.findPage("#inputName").val();
+            self._newJob(name);
         });
 
-        self.parent.$page.on('click', 'button.update', function(event) {
+        self.browserContext.onPage('click', 'button.update', function(event) {
             event.preventDefault();
-            var id = self.parent.$page.find("#updateId").html();
-            var name = self.parent.$page.find("#inputName").val();
-            self.editJob(id, name);
+            var id = self.browserContext.findPage("#updateId").html();
+            var name = self.browserContext.findPage("#inputName").val();
+            self._editJob(id, name);
         });
 
-        self.parent.$page.on("click", "button.create,a.create", function(event) {
+        self.browserContext.onPage("click", "button.create,a.create", function(event) {
             event.preventDefault();
-            self.parent.changePage("job");
+            self.browserContext.changePage("job");
         });
 
     };
 
-    JobController.prototype.editJob = function(id, name) {
+    JobController.prototype._editJob = function(id, name) {
         var self = this;
         $.ajax({
             method: "PUT",
@@ -83,11 +103,11 @@ crystalshard.ruby.ui.components.JobController = (function() {
             contentType:"application/json; charset=utf-8"
         })
         .done(function (data) {
-            self.parent.changePage("");
+            self.browserContext.changePage("");
         });
     };
 
-    JobController.prototype.deleteJob = function(id) {
+    JobController.prototype._deleteJob = function(id) {
         var self = this;
         $.ajax({
             method: "DELETE",
@@ -96,11 +116,11 @@ crystalshard.ruby.ui.components.JobController = (function() {
             contentType:"application/json; charset=utf-8"
         })
         .done(function (data) {
-            self.parent.refresh();
+            self.browserContext.refresh();
         });
     };
 
-    JobController.prototype.newJob = function(name) {
+    JobController.prototype._newJob = function(name) {
             var self = this;
             $.ajax({
                 method: "POST",
@@ -110,39 +130,10 @@ crystalshard.ruby.ui.components.JobController = (function() {
                 contentType:"application/json; charset=utf-8"
             })
             .done(function (data) {
-                self.parent.changePage("");
+                self.browserContext.changePage("");
             });
         };
-
-    JobController.prototype.initIndexPage = function() {
-        var self = this;
-        $.ajax({
-            method: "GET",
-            url: "/api/v1/job",
-            dataType: "json"
-        })
-        .done(function (data) {
-            self.parent.render(self.indexTemplate(data));
-        });
-    };
-
-    JobController.prototype.initEditPage = function(id) {
-        var self = this;
-        $.ajax({
-            method: "GET",
-            url: "/api/v1/job/" + id,
-            dataType: "json"
-        })
-        .done(function (data) {
-            self.parent.render(self.editTemplate(data.results));
-        });
-    };
-
-    JobController.prototype.initNewPage = function() {
-    var self = this;
-        self.parent.render(self.editTemplate({id:"", name:"", createdDateUtc:"", updatedDateUtc:""}));
-    };
-
+    
     return JobController;
 
 })();

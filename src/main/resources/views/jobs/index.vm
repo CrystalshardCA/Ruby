@@ -82,6 +82,8 @@
     "/js/namespace.js",
     "/js/crystalshard/ruby/ui/components/Path.js",
     "/js/crystalshard/ruby/ui/components/Router.js",
+    "/js/crystalshard/ruby/ui/components/BrowserContext.js",
+    "/js/crystalshard/ruby/ui/components/RequestHandler.js",
     "/js/crystalshard/ruby/ui/components/BaseController.js",
     "/js/crystalshard/ruby/ui/components/JobController.js",
     "/js/apps/jobs/index.js"

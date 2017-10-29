@@ -16,15 +16,23 @@ crystalshard.ruby.ui.components.Router = (function () {
         this.paths.push(new Path(path, callback));
     };
 
-    Router.prototype.handleUrlChange = function(url) {
+    Router.prototype.handleUrlChange = function(url, successCallback, notFoundCallback) {
+        var foundRoute = false;
         for (var i = 0; i < this.paths.length; i++) {
             if (this.paths[i].checkRegex(url)) {
+                foundRoute = true;
                 var matches = this.paths[i].getMatches(url);
-                this.paths[i].getCallback()(matches);
-                return true;
+                this.paths[i].getCallback()(function (response) {
+                    if (typeof successCallback === "function") {
+                        successCallback(response);
+                    }
+                }, matches);
+                break;
             }
         }
-        return false;
+        if (!foundRoute && typeof notFoundCallback === "function") {
+            notFoundCallback();
+        }
     };
 
     return Router;
