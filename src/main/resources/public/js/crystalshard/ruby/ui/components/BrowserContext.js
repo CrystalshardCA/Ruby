@@ -40,6 +40,17 @@ crystalshard.ruby.ui.components.BrowserContext = (function () {
         return index === -1 ? "" : url.substring(index);
     };
 
+    BrowserContext.prototype.ajax = function(options, doneCallback) {
+        options["dataType"] = "json";
+        options["contentType"] = "application/json; charset=utf-8";
+        $.ajax(options)
+            .done(function (data) {
+                if (typeof doneCallback === "function") {
+                    doneCallback(data);
+                }
+            });
+    };
+
     return BrowserContext;
 
 })();

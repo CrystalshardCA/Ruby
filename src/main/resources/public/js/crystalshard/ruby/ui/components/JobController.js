@@ -94,42 +94,32 @@ crystalshard.ruby.ui.components.JobController = (function() {
     };
 
     JobController.prototype._editJob = function(id, name) {
-        var self = this;
-        $.ajax({
+        self.browserContext.ajax({
             method: "PUT",
             url: "/api/v1/job/" + id,
-            dataType: "json",
-            data: JSON.stringify({name: name}),
-            contentType:"application/json; charset=utf-8"
-        })
-        .done(function (data) {
+            data: JSON.stringify({name: name})
+        }, function (data) {
             self.browserContext.changePage("");
         });
     };
 
     JobController.prototype._deleteJob = function(id) {
         var self = this;
-        $.ajax({
+        self.browserContext.ajax({
             method: "DELETE",
-            url: "/api/v1/job/" + id,
-            dataType: "json",
-            contentType:"application/json; charset=utf-8"
-        })
-        .done(function (data) {
+            url: "/api/v1/job/" + id
+        }, function (data) {
             self.browserContext.refresh();
         });
     };
 
     JobController.prototype._newJob = function(name) {
             var self = this;
-            $.ajax({
+            self.browserContext.ajax({
                 method: "POST",
                 url: "/api/v1/job",
-                dataType: "json",
-                data: JSON.stringify({name: name}),
-                contentType:"application/json; charset=utf-8"
-            })
-            .done(function (data) {
+                data: JSON.stringify({name: name})
+            }, function (data) {
                 self.browserContext.changePage("");
             });
         };
