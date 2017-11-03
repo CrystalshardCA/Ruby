@@ -32,12 +32,7 @@ public class HomeController extends RubyTemplateController {
                 model.put("firstName", "First");
                 model.put("lastName", "Last");
 
-                return new ModelAndView(model, "home/index.vm");
-            });
-            get("/about", (TemplateViewRoute) (request, response) -> {
-                int i = 1;
-
-                return new ModelAndView(i, "home/index.vm");
+                return new ModelAndView(model, "angular.vm");
             });
         });
 
