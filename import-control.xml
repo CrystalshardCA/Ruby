@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC "-//Puppy Crawl//DTD Import Control 1.2//EN"
+        "import_control_1_2.dtd">
+
+<import-control pkg="ca.crystalshard.ruby">
+    <allow pkg="java"/>
+    <allow pkg="org"/>
+    <allow pkg="com.google"/>
+    <allow pkg="com.microsoft"/>
+    <allow pkg="com.mysql"/>
+    <allow pkg="sun"/>
+    <allow pkg="javax"/>
+    <allow pkg="spark"/>
+    <allow pkg="ca.crystalshard.ruby"/>
+    <subpackage name="common">
+        <disallow pkg="ca.crystalshard.ruby.web"/>
+        <disallow pkg="ca.crystalsahrd.ruby.processor"/>
+        <disallow pkg="ca.crystalshard.ruby.boot"/>
+        <subpackage name="domain">
+            <disallow pkg="ca.crystalshard.ruby.common.adapter"/>
+        </subpackage>
+        <subpackage name="adapter">
+        </subpackage>
+    </subpackage>
+    <subpackage name="web">
+        <disallow pkg="ca.crystalshard.ruby.processor"/>
+        <disallow pkg="ca.crystalshard.ruby.boot"/>
+        <subpackage name="domain">
+            <disallow pkg="ca.crystalshard.ruby.web.adapter"/>
+        </subpackage>
+        <subpackage name="adapter">
+        </subpackage>
+    </subpackage>
+    <subpackage name="processor">
+        <disallow pkg="ca.crystalshard.ruby.web"/>
+        <disallow pkg="ca.crystalshard.ruby.boot"/>
+    </subpackage>
+    <subpackage name="boot">
+    </subpackage>
+</import-control>
