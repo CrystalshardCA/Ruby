@@ -1,4 +1,5 @@
 target/
+venv/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -12,3 +13,5 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 .idea/workspace.xml
 *.log
+
+\.idea/
